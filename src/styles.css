@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #2563eb;
+}
+
+body {
+  @apply bg-cad-bg text-slate-900 transition-colors duration-500 antialiased;
+  min-height: 100vh;
+}
+
+.dark body {
+  @apply bg-cad-dark text-slate-50;
+}
+
+@layer components {
+  .cad-sidebar-item {
+    @apply flex items-center space-x-3 px-4 py-3 rounded-xl transition-all cursor-pointer text-slate-400 hover:bg-white/5 hover:text-white;
+  }
+  .cad-sidebar-item-active {
+    @apply bg-cad-blue/10 text-cad-blue hover:bg-cad-blue/20 hover:text-cad-blue;
+  }
+  .glass-card {
+    @apply bg-white dark:bg-slate-900/50 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 dark:bg-slate-800 rounded-full;
+}

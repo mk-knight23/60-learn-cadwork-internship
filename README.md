@@ -1,36 +1,64 @@
-# Cadwork_Internship
- A CADWORK Project TO Get Internship
+# Cadwork - Internship Project Portal
 
-## How to use?
+A professional-grade engineering project management dashboard designed to track and document internship milestones and technical deliverables. Built with Angular 19 and Tailwind CSS.
 
-1. Download or clone this repo.
+## Overview
+This portal serves as the centralized hub for the Cadwork internship, replacing legacy mobile-first scripts with a robust, data-driven web environment. It prioritizes clarity, technical precision, and architectural excellence.
 
-2. Install dependencies.
+## Features Comparison
 
-```js
+| Feature | Legacy Version | Upgraded (v2.0) |
+| :--- | :--- | :--- |
+| **Tech Stack** | React Native / Expo | **Angular 19 + TypeScript + Tailwind** |
+| **Platform** | Mobile | **Professional Web Dashboard** |
+| **Tracking** | Manual / Static | **Automated Progress & Milestone Engine** |
+| **UI/UX** | Dev-centric | **Industrial Tech Dashboard Design** |
+| **Theming** | Light Only | **Sophisticated Dark Mode Support** |
+| **Architecture** | Flat | **Domain-Driven Modular Structure** |
+
+## Tech Stack
+- **Framework:** Angular 19 (Standalone Components, Signals)
+- **Styling:** Tailwind CSS (Blueprint palette)
+- **Icons:** Lucide Angular
+- **State:** Angular Signals for reactive UI state
+- **Typography:** JetBrains Mono & Inter
+
+## Project Structure
+```text
+src/app/
+├── features/projects/      # Project tracking & operational components
+├── types/                  # Strict domain interfaces
+└── app.component.ts        # Dashboard orchestration engine
+```
+
+## Setup & Build Instructions
+
+### Prerequisites
+- Node.js 18.x or higher
+- npm 10.x or higher
+
+### Installation
+```bash
+# Install dependencies
 npm install
-// or
-yarn install
 ```
 
-3. Run project on iOS / Android.
-
-```js
- npm run ios // npm run android
- // or
- yarn ios // yarn android
+### Development
+```bash
+# Start development server
+npm start
 ```
-4. DEMO LOGIN : Any Random Valid Email And Password.
 
+### Production Build
+```bash
+# Build for production
+npm run build
+```
 
-## ScreenShots
+## Deployment
+Optimized for enterprise static hosting or internal project servers.
 
-![alt text](https://github.com/mk-knight23/Cadwork_Internship/blob/main/Screenshots/23.png?raw=true)
+---
 
-![alt text](https://github.com/mk-knight23/Cadwork_Internship/blob/main/Screenshots/24.png?raw=true)
-
-![alt text](https://github.com/mk-knight23/Cadwork_Internship/blob/main/Screenshots/25.png?raw=true)
-
-![alt text](https://github.com/mk-knight23/Cadwork_Internship/blob/main/Screenshots/26.png?raw=true)
-
-![alt text](https://github.com/mk-knight23/Cadwork_Internship/blob/main/Screenshots/27.png?raw=true)
+**License:** MIT
+**Project Architect:** mk-knight23
