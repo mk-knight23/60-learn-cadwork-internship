@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { 
   LayoutDashboard, 
@@ -17,23 +17,32 @@ import {
   Github
 } from 'lucide-angular';
 import { LucideAngularModule } from 'lucide-angular';
+import { SettingsService } from './core/services/settings.service';
+import { AudioService } from './core/services/audio.service';
+import { KeyboardService } from './core/services/keyboard.service';
+import { SettingsPanelComponent } from './features/dashboard/components/settings-panel.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, SettingsPanelComponent],
   template: `
-    <div class="min-h-screen flex bg-cad-bg dark:bg-cad-dark transition-colors duration-500">
+    <div class="min-h-screen flex bg-cad-bg dark:bg-cad-dark transition-colors duration-500" [class.dark]="settingsService.isDarkMode()" [class.light]="!settingsService.isDarkMode()">
       
       <!-- Sidebar -->
       <aside class="w-72 bg-slate-900 border-r border-white/5 p-8 flex flex-col justify-between h-screen sticky top-0 hidden lg:flex">
          <div class="space-y-12">
-            <div class="flex items-center space-x-3 px-2">
-               <div class="w-10 h-10 bg-cad-blue rounded-xl flex items-center justify-center font-mono font-black italic text-xl text-white">CW</div>
-               <div class="flex flex-col">
-                  <span class="text-white font-black tracking-tighter text-lg leading-none uppercase">Cadwork</span>
-                  <span class="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">Internship Portal</span>
+            <div class="flex items-center justify-between">
+               <div class="flex items-center space-x-3 px-2">
+                  <div class="w-10 h-10 bg-cad-blue rounded-xl flex items-center justify-center font-mono font-black italic text-xl text-white">CW</div>
+                  <div class="flex flex-col">
+                     <span class="text-white font-black tracking-tighter text-lg leading-none uppercase">Cadwork</span>
+                     <span class="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">Internship Portal</span>
+                  </div>
                </div>
+               <button (click)="openSettings()" class="p-2 rounded-lg hover:bg-white/10 transition-colors">
+                  <lucide-icon [name]="'settings'" [size]="18" class="text-slate-400"></lucide-icon>
+               </button>
             </div>
 
             <nav class="space-y-2">
@@ -217,24 +226,61 @@ import { LucideAngularModule } from 'lucide-angular';
          <!-- Global Footer -->
          <footer class="h-16 border-t border-slate-200 dark:border-slate-800 px-10 flex items-center justify-between text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
             <span>© 2026 Cadwork Engineering</span>
-            <div class="flex items-center space-x-8">
-               <a href="#" class="hover:text-cad-blue transition-colors">Documentation</a>
-               <a href="#" class="hover:text-cad-blue transition-colors">Privacy Architecture</a>
-            </div>
-         </footer>
-      </main>
+             <div class="flex items-center space-x-8">
+                <a href="#" class="hover:text-cad-blue transition-colors">Documentation</a>
+                <a href="#" class="hover:text-cad-blue transition-colors">Privacy Architecture</a>
+             </div>
+          </footer>
 
-    </div>
-  `,
-  styles: [`
-    :host { display: block; }
-  `]
+          <app-settings-panel></app-settings-panel>
+       </main>
+
+     </div>
+   `,
+   styles: [`
+     :host { display: block; }
+   `]
 })
 export class App {
+  settingsService = inject(SettingsService);
+  private audioService = inject(AudioService);
+  private keyboardService = inject(KeyboardService);
+
   projects = [
     { id: 'PRJ-001', title: 'Hydraulic System Blueprinting', status: 'ongoing', progress: 65, startDate: 'Jan 15, 2026' },
     { id: 'PRJ-002', title: 'Automated CAD Validation Engine', status: 'review', progress: 92, startDate: 'Feb 02, 2026' },
     { id: 'PRJ-003', title: 'Turbine Optimization Report', status: 'completed', progress: 100, startDate: 'Dec 10, 2025' },
     { id: 'PRJ-004', title: 'Material Stress Simulation', status: 'draft', progress: 12, startDate: 'Feb 10, 2026' }
   ];
+
+  constructor() {
+    effect(() => {
+      this.settingsService.isDarkMode();
+    });
+
+    effect(() => {
+      const action = this.keyboardService.lastAction();
+      if (action !== 'none') {
+        this.handleAction(action);
+      }
+    });
+  }
+
+  private handleAction(action: string): void {
+    switch (action) {
+      case 'help':
+        this.settingsService.toggleHelp();
+        break;
+      case 'close':
+        if (this.settingsService.showHelp()) {
+          this.settingsService.toggleHelp();
+        }
+        break;
+    }
+  }
+
+  openSettings(): void {
+    this.audioService.playClick();
+    this.settingsService.toggleHelp();
+  }
 }

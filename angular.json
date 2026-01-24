@@ -42,7 +42,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/47-Cadwork-Internship-Project/"
             },
             "development": {
               "optimization": false,
