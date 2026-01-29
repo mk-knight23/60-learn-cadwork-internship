@@ -1,5 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
 import { SettingsService, ThemeMode } from '../../../core/services/settings.service';
 import { StatsService } from '../../../core/services/stats.service';
 import { AudioService } from '../../../core/services/audio.service';
@@ -8,103 +16,281 @@ import { KeyboardService } from '../../../core/services/keyboard.service';
 @Component({
   selector: 'app-settings-panel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatButtonToggleModule,
+    MatSlideToggleModule,
+    MatDividerModule,
+    MatCardModule,
+    FormsModule
+  ],
   template: `
     @if (settingsService.showHelp()) {
-      <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" (click)="close()">
-        <div class="bg-slate-900 border border-white/10 rounded-3xl shadow-2xl max-w-md w-full" (click)="$event.stopPropagation()">
-          <div class="p-8">
-            <div class="flex justify-between items-center mb-8">
-              <h2 class="text-2xl font-black text-white">Settings</h2>
-              <button (click)="close()" class="p-2 rounded-full hover:bg-white/10 transition-colors">
-                <span class="text-xl text-white">✕</span>
+      <div class="settings-overlay" (click)="close()">
+        <div class="settings-dialog" (click)="$event.stopPropagation()">
+          <div class="settings-header">
+            <h2>Settings</h2>
+            <button mat-icon-button (click)="close()" class="close-button">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+
+          <div class="settings-content">
+            <!-- Theme Section -->
+            <div class="settings-section">
+              <h3>Theme</h3>
+              <mat-button-toggle-group 
+                [value]="settingsService.theme()"
+                (change)="setTheme($event.value)"
+                aria-label="Theme selection">
+                <mat-button-toggle value="light">
+                  <mat-icon>light_mode</mat-icon>
+                  Light
+                </mat-button-toggle>
+                <mat-button-toggle value="dark">
+                  <mat-icon>dark_mode</mat-icon>
+                  Dark
+                </mat-button-toggle>
+                <mat-button-toggle value="system">
+                  <mat-icon>computer</mat-icon>
+                  System
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <!-- Sound Section -->
+            <div class="settings-section">
+              <h3>Sound Effects</h3>
+              <mat-slide-toggle 
+                [checked]="settingsService.soundEnabled()"
+                (change)="toggleSound()"
+                color="primary">
+                Enable UI sounds
+              </mat-slide-toggle>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <!-- Statistics Section -->
+            <div class="settings-section">
+              <h3>Session Statistics</h3>
+              <div class="stats-grid">
+                <mat-card class="stat-item">
+                  <mat-icon>folder_open</mat-icon>
+                  <span class="stat-value">{{ statsService.totalProjectsViewed() }}</span>
+                  <span class="stat-label">Projects Viewed</span>
+                </mat-card>
+                <mat-card class="stat-item">
+                  <mat-icon>task_alt</mat-icon>
+                  <span class="stat-value">{{ statsService.totalTasksCompleted() }}</span>
+                  <span class="stat-label">Tasks Done</span>
+                </mat-card>
+                <mat-card class="stat-item">
+                  <mat-icon>schedule</mat-icon>
+                  <span class="stat-value">{{ statsService.formatTime() }}</span>
+                  <span class="stat-label">Time Spent</span>
+                </mat-card>
+              </div>
+              <button mat-stroked-button color="warn" (click)="resetStats()" class="reset-button">
+                <mat-icon>refresh</mat-icon>
+                Reset Statistics
               </button>
             </div>
 
-            <div class="space-y-6">
-              <div class="space-y-3">
-                <h3 class="text-sm font-semibold text-slate-400">Theme</h3>
-                <div class="flex gap-2">
-                  @for (mode of themeModes; track mode.value) {
-                    <button
-                      (click)="setTheme(mode.value)"
-                      [class]="settingsService.theme() === mode.value
-                        ? 'bg-cad-blue text-white'
-                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700'"
-                      class="flex-1 px-3 py-2 rounded-xl font-medium transition-all"
-                    >
-                      {{ mode.label }}
-                    </button>
-                  }
-                </div>
-              </div>
+            <mat-divider></mat-divider>
 
-              <div class="space-y-3">
-                <h3 class="text-sm font-semibold text-slate-400">Sound Effects</h3>
-                <button
-                  (click)="toggleSound()"
-                  class="w-full flex items-center justify-between p-4 bg-slate-800 rounded-2xl"
-                >
-                  <span class="font-medium text-white">Enable Sound</span>
-                  <span [class]="settingsService.soundEnabled() ? 'text-cad-green' : 'text-slate-500'">
-                    {{ settingsService.soundEnabled() ? '✓' : '✕' }}
-                  </span>
-                </button>
-              </div>
-
-              <div class="space-y-3">
-                <h3 class="text-sm font-semibold text-slate-400">Statistics</h3>
-                <div class="grid grid-cols-2 gap-3">
-                  <div class="p-4 bg-slate-800 rounded-2xl text-center">
-                    <div class="text-2xl font-black text-cad-blue">{{ statsService.totalProjectsViewed() }}</div>
-                    <div class="text-xs text-slate-500">Projects</div>
+            <!-- Keyboard Shortcuts Section -->
+            <div class="settings-section">
+              <h3>Keyboard Shortcuts</h3>
+              <div class="shortcuts-list">
+                @for (shortcut of keyboardService.getShortcuts(); track shortcut.key) {
+                  <div class="shortcut-item">
+                    <span class="shortcut-action">{{ shortcut.action }}</span>
+                    <kbd class="shortcut-key">{{ shortcut.key }}</kbd>
                   </div>
-                  <div class="p-4 bg-slate-800 rounded-2xl text-center">
-                    <div class="text-2xl font-black text-cad-green">{{ statsService.totalTasksCompleted() }}</div>
-                    <div class="text-xs text-slate-500">Tasks</div>
-                  </div>
-                  <div class="p-4 bg-slate-800 rounded-2xl text-center">
-                    <div class="text-2xl font-black text-cad-blue">{{ statsService.formatTime() }}</div>
-                    <div class="text-xs text-slate-500">Time Spent</div>
-                  </div>
-                  <div class="p-4 bg-slate-800 rounded-2xl text-center">
-                    <div class="text-2xl font-black text-cad-green">{{ statsService.lastVisit() ? 'Yes' : 'No' }}</div>
-                    <div class="text-xs text-slate-500">Last Visit</div>
-                  </div>
-                </div>
-                <button
-                  (click)="resetStats()"
-                  class="w-full p-3 text-red-500 hover:bg-red-900/20 rounded-xl transition-colors font-medium"
-                >
-                  Reset Statistics
-                </button>
-              </div>
-
-              <div class="space-y-3">
-                <h3 class="text-sm font-semibold text-slate-400">Keyboard Shortcuts</h3>
-                <div class="space-y-2">
-                  @for (shortcut of keyboardService.getShortcuts(); track shortcut.key) {
-                    <div class="flex items-center justify-between p-3 bg-slate-800 rounded-xl">
-                      <span class="text-white">{{ shortcut.action }}</span>
-                      <kbd class="px-3 py-1 text-sm font-mono bg-slate-700 text-white rounded-lg">{{ shortcut.key }}</kbd>
-                    </div>
-                  }
-                </div>
+                }
               </div>
             </div>
+          </div>
 
-            <div class="mt-8 pt-6 border-t border-slate-700">
-              <p class="text-center text-sm text-slate-500">
-                Cadwork v1.0.0 • Built with Angular 21
-              </p>
-            </div>
+          <div class="settings-footer">
+            <p>Cadwork Internship Portal v2.0</p>
+            <p>Built with Angular 19</p>
           </div>
         </div>
       </div>
     }
   `,
   styles: [`
-    :host { display: contents; }
+    .settings-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .settings-dialog {
+      background: white;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 24px 16px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .settings-header h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1E293B;
+      margin: 0;
+    }
+
+    .close-button {
+      color: #64748B;
+    }
+
+    .settings-content {
+      padding: 24px;
+    }
+
+    .settings-section {
+      padding: 8px 0;
+    }
+
+    .settings-section h3 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+      margin: 0 0 16px 0;
+    }
+
+    mat-button-toggle-group {
+      width: 100%;
+    }
+
+    mat-button-toggle {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 16px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-item mat-icon {
+      color: #2563EB;
+      font-size: 24px;
+      width: 24px;
+      height: 24px;
+    }
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1E293B;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .reset-button {
+      width: 100%;
+    }
+
+    .shortcuts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .shortcut-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background-color: #F8FAFC;
+      border-radius: 8px;
+    }
+
+    .shortcut-action {
+      font-size: 14px;
+      color: #475569;
+    }
+
+    .shortcut-key {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 4px 10px;
+      background-color: #E2E8F0;
+      border-radius: 6px;
+      color: #1E293B;
+      font-weight: 600;
+      border: none;
+    }
+
+    .settings-footer {
+      text-align: center;
+      padding: 16px 24px 24px;
+      border-top: 1px solid #E2E8F0;
+    }
+
+    .settings-footer p {
+      font-size: 12px;
+      color: #94A3B8;
+      margin: 0;
+    }
+
+    :host-context(.dark) {
+      .settings-dialog { background-color: #1E293B; }
+      .settings-header { border-color: #334155; }
+      .settings-header h2 { color: #F8FAFC; }
+      .settings-section h3 { color: #94A3B8; }
+      .stat-item { background-color: #334155; }
+      .stat-value { color: #F8FAFC; }
+      .shortcut-item { background-color: #334155; }
+      .shortcut-action { color: #CBD5E1; }
+      .shortcut-key { background-color: #475569; color: #F8FAFC; }
+      .settings-footer { border-color: #334155; }
+    }
   `]
 })
 export class SettingsPanelComponent {
@@ -113,10 +299,10 @@ export class SettingsPanelComponent {
   private audioService = inject(AudioService);
   keyboardService = inject(KeyboardService);
 
-  themeModes: { value: ThemeMode; label: string }[] = [
-    { value: 'dark', label: 'Dark' },
-    { value: 'light', label: 'Light' },
-    { value: 'system', label: 'System' },
+  themeModes: { value: ThemeMode; label: string; icon: string }[] = [
+    { value: 'light', label: 'Light', icon: 'light_mode' },
+    { value: 'dark', label: 'Dark', icon: 'dark_mode' },
+    { value: 'system', label: 'System', icon: 'computer' }
   ];
 
   close(): void {
@@ -131,7 +317,9 @@ export class SettingsPanelComponent {
 
   toggleSound(): void {
     this.settingsService.toggleSound();
-    this.audioService.playSuccess();
+    if (this.settingsService.soundEnabled()) {
+      this.audioService.playSuccess();
+    }
   }
 
   resetStats(): void {

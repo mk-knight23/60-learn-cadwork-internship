@@ -1,59 +1,53 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-cad-steel: #475569;
+  --color-cad-blue: #2563eb;
+  --color-cad-orange: #ea580c;
+  --color-cad-bg: #f1f5f9;
+  --color-cad-dark: #0f172a;
+
+  --font-mono: "JetBrains Mono", monospace;
+}
 
 :root {
   --primary: #2563eb;
   --app-bg-light: #f8fafc;
   --app-bg-dark: #0f172a;
-  color-scheme: dark;
 }
 
 body {
   @apply bg-cad-bg text-slate-900 transition-colors duration-500 antialiased;
   min-height: 100vh;
-}
-
-.dark {
-  color-scheme: dark;
-}
-
-.light {
-  color-scheme: light;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .dark body {
   @apply bg-cad-dark text-slate-50;
 }
 
-.light body {
-  @apply bg-slate-50 text-slate-900;
+@utility cad-sidebar-item {
+  @apply flex items-center space-x-3 px-4 py-3 rounded-xl transition-all cursor-pointer text-slate-400 hover:bg-white/5 hover:text-white;
 }
 
-kbd {
-  @apply px-2 py-1 text-xs font-mono bg-slate-200 dark:bg-slate-700 rounded;
+@utility cad-sidebar-item-active {
+  @apply bg-cad-blue/10 text-cad-blue hover:bg-cad-blue/20 hover:text-cad-blue;
 }
 
-@layer components {
-  .cad-sidebar-item {
-    @apply flex items-center space-x-3 px-4 py-3 rounded-xl transition-all cursor-pointer text-slate-400 hover:bg-white/5 hover:text-white;
+@utility glass-card {
+  @apply bg-white dark:bg-slate-900/50 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm;
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
   }
-  .cad-sidebar-item-active {
-    @apply bg-cad-blue/10 text-cad-blue hover:bg-cad-blue/20 hover:text-cad-blue;
+
+  &::-webkit-scrollbar-track {
+    @apply bg-transparent;
   }
-  .glass-card {
-    @apply bg-white dark:bg-slate-900/50 backdrop-blur-xl border border-slate-200 dark:border-slate-800 rounded-3xl shadow-sm;
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-slate-200 dark:bg-slate-800 rounded-full;
   }
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  @apply bg-transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-slate-200 dark:bg-slate-800 rounded-full;
 }
