@@ -1,67 +1,71 @@
-# Cadwork Design System v2.0
+# Cadwork Design System v3.0 - Glassmorphism Edition
 
-> Internal documentation for the Cadwork Internship Learning Portal.
-> This document explains the design decisions made and serves as the single source of truth for all UI/UX patterns.
+> Modern, bright, and confident UI system using the UI-UX Pro Max recommendations.
 
 ---
 
 ## Design Philosophy
 
-We chose a **professional enterprise aesthetic** over a "flashy" portfolio style because:
+We chose **Glassmorphism with modern SaaS aesthetics** for v3.0 because:
 
-1. **Authenticity**: This documents a real internship experience
-2. **Usability**: Information density matters more than visual wow-factor
-3. **Professional Growth**: Demonstrates understanding of enterprise UI patterns
+1. **Modern & Bright**: Frosted glass effects with vibrant colors create visual energy
+2. **Professional Yet Approachable**: Glassmorphism signals innovation while maintaining credibility
+3. **High Clarity**: Excellent contrast ratios and clear visual hierarchy
 
 ---
 
 ## Color Palette
 
-### Primary Colors
+### Primary Colors (Vibrant Indigo Theme)
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| `--cad-primary` | `#2563EB` | Primary actions, links, active states |
-| `--cad-primary-dark` | `#1D4ED8` | Hover states |
-| `--cad-primary-light` | `#3B82F6` | Focus rings, accents |
+| `--cad-primary` | `#4F46E5` | Primary actions, links, active states (vibrant indigo) |
+| `--cad-primary-dark` | `#4338CA` | Hover states |
+| `--cad-primary-light` | `#6366F1` | Focus rings, accents |
 
-### Neutral Colors (Grayscale)
+### Secondary & Accent Colors
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| `--cad-gray-50` | `#F8FAFC` | Backgrounds, cards |
-| `--cad-gray-100` | `#F1F5F9` | Hover backgrounds |
-| `--cad-gray-200` | `#E2E8F0` | Borders, dividers |
-| `--cad-gray-300` | `#CBD5E1` | Disabled states |
-| `--cad-gray-400` | `#94A3B8` | Secondary text |
-| `--cad-gray-500` | `#64748B` | Placeholder text |
-| `--cad-gray-600` | `#475569` | Body text |
-| `--cad-gray-700` | `#334155` | Headings |
-| `--cad-gray-800` | `#1E293B` | Dark backgrounds |
-| `--cad-gray-900` | `#0F172A` | Sidebar, deep backgrounds |
+| `--cad-secondary` | `#818CF8` | Secondary elements, highlights (bright cyan) |
+| `--cad-cta` | `#22C55E` | Call-to-action buttons (vibrant green) |
+
+### Neutral Colors (Warmed Grayscale)
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--cad-gray-50` | `#EEF2FF` | Backgrounds (light blue-white) |
+| `--cad-gray-100` | `#E0E7FF` | Hover backgrounds |
+| `--cad-gray-200` | `#C7D2FE` | Borders, dividers |
+| `--cad-gray-300` | `#A5B4FC` | Disabled states |
+| `--cad-gray-400` | `#818CF8` | Secondary text |
+| `--cad-gray-500` | `#6366F1` | Placeholder text |
+| `--cad-gray-600` | `#4F46E5` | Body text (primary) |
+| `--cad-gray-700` | `#312E81` | Headings (deep indigo) |
+| `--cad-gray-800` | `#1E1B4B` | Dark backgrounds |
+| `--cad-gray-900` | `0F172A` | Deepest backgrounds |
 
 ### Semantic Colors
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| `--cad-success` | `#10B981` | Completed states, success messages |
+| `--cad-success` | `#22C55E` | Completed states, success messages |
+| `--cad-success-light` | `#86EFAC` | Success backgrounds |
 | `--cad-warning` | `#F59E0B` | In-progress, warnings |
+| `--cad-warning-light` | `#FCD34D` | Warning backgrounds |
 | `--cad-error` | `#EF4444` | Errors, critical alerts |
+| `--cad-error-light` | `#FCA5A5` | Error backgrounds |
 | `--cad-info` | `#0EA5E9` | Informational content |
+| `--cad-info-light` | `#38BDF8` | Info backgrounds |
 
-### Dark Mode Mapping
+### Background Colors
 
-```
-Light Mode                    Dark Mode
-─────────────────────────────────────────
---cad-gray-50  →  --cad-gray-900
---cad-gray-100 →  --cad-gray-800
---cad-gray-200 →  --cad-gray-700
---cad-gray-600 →  --cad-gray-300
---cad-gray-700 →  --cad-gray-200
---cad-gray-800 →  --cad-gray-100
---cad-gray-900 →  --cad-gray-50
-```
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `--cad-bg` | `#EEF2FF` | Main background (light blue-white) |
+| `--cad-bg-dark` | `#0F172A` | Dark mode background |
+| `--cad-surface` | `#FFFFFF` | Cards, surfaces (with opacity) |
 
 ---
 
@@ -70,16 +74,24 @@ Light Mode                    Dark Mode
 ### Font Stack
 
 ```css
---font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+--font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
---font-display: 'Inter', sans-serif; /* For headings only */
+--font-display: 'Plus Jakarta Sans', sans-serif;
 ```
 
-**Why Inter?**
-- Excellent readability at small sizes
-- Built-in optimization for UI elements
-- Professional, neutral appearance
-- Comprehensive weight range (300-800)
+**Why Plus Jakarta Sans?**
+- Modern, friendly, and professional
+- Excellent readability at all sizes
+- Great for SaaS and learning platforms
+- 8 font weights (200-800) for flexible hierarchy
+
+### Google Fonts Import
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+```
 
 ### Type Scale
 
@@ -94,13 +106,6 @@ Light Mode                    Dark Mode
 | Body Small | 0.875rem (14px) | 400 | 1.5 | 0 |
 | Caption | 0.75rem (12px) | 500 | 1.4 | 0.01em |
 | Overline | 0.625rem (10px) | 700 | 1.2 | 0.1em |
-
-### Typography Patterns
-
-- **Headings**: Use `font-display` with tight tracking for impact
-- **Body**: Standard `font-sans` for readability
-- **Code/Mono**: `font-mono` for code snippets, file paths, and technical data
-- **Overlines**: All caps, wide tracking for labels and section headers
 
 ---
 
@@ -121,37 +126,40 @@ We use an **8px base grid** with the following spacing scale:
 8    →  64px  (hero spacing)
 ```
 
-### Layout Patterns
+---
 
-#### Dashboard Layout
+## Glassmorphism Effects
 
-```
-┌─────────────────────────────────────────────────────────┐
-│  SIDEBAR (260px)  │  MAIN CONTENT (flex: 1)             │
-│                   │  ┌───────────────────────────────┐  │
-│  ┌─────────┐      │  │         Header (72px)         │  │
-│  │  Logo   │      │  └───────────────────────────────┘  │
-│  └─────────┘      │  ┌───────────────────────────────┐  │
-│                   │  │                               │  │
-│  Navigation       │  │       Scrollable Content      │  │
-│  - Dashboard      │  │                               │  │
-│  - Projects       │  │                               │  │
-│  - Lessons        │  │                               │  │
-│  - Skills         │  │                               │  │
-│                   │  │                               │  │
-│  ┌─────────┐      │  └───────────────────────────────┘  │
-│  │ Storage │      │                                     │
-│  └─────────┘      │                                     │
-└───────────────────┴─────────────────────────────────────┘
+### Glass Card Style
+
+```css
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 4px 6px -1px rgba(79, 70, 229, 0.1),
+    0 2px 4px -1px rgba(79, 70, 229, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
 ```
 
-**Intentional Quirk: Asymmetrical Sidebar Spacing**
+**Usage**: Primary content containers, cards, modals
 
-The sidebar uses slightly asymmetrical padding:
-- Left padding: 24px
-- Right padding: 20px (slightly less)
+### Glass Navigation
 
-**Why?** This creates a subtle visual "inward lean" that draws attention to the navigation items. It's barely perceptible but adds character. We kept this from the original design because it felt right during testing, even though symmetrical spacing is the "correct" approach.
+```css
+.glass-nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+```
+
+**Usage**: Header, sidebar, floating elements
 
 ---
 
@@ -159,35 +167,32 @@ The sidebar uses slightly asymmetrical padding:
 
 ### Cards
 
-Cards are our primary content container. They use:
-
 ```css
 .cad-card {
-  background: var(--cad-gray-50);
-  border: 1px solid var(--cad-gray-200);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
   padding: 24px;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cad-card:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 8px 12px -2px rgba(79, 70, 229, 0.15),
+    0 4px 6px -2px rgba(79, 70, 229, 0.1);
+  transform: translateY(-2px);
 }
 ```
 
-**Why 12px border-radius?**
-- 8px felt too sharp for a learning platform
-- 16px felt too "friendly"/casual
-- 12px strikes the right balance between professional and approachable
-
 ### Buttons
 
-| Variant | Background | Text | Border | Usage |
-|---------|------------|------|--------|-------|
-| Primary | `--cad-primary` | white | none | Main CTAs |
-| Secondary | transparent | `--cad-gray-700` | `--cad-gray-200` | Secondary actions |
-| Tertiary | transparent | `--cad-primary` | none | Subtle actions |
-| Ghost | transparent | `--cad-gray-600` | none | Icon buttons |
+| Variant | Background | Text | Border | Shadow |
+|---------|------------|------|--------|--------|
+| Primary | `--cad-primary` | white | none | Glass glow |
+| Secondary | `rgba(79, 70, 229, 0.1)` | `--cad-primary` | `--cad-primary` | Subtle |
+| CTA | `--cad-cta` | white | none | Vibrant glow |
 
 **Button Sizes:**
 - Small: 32px height, 12px horizontal padding
@@ -196,13 +201,15 @@ Cards are our primary content container. They use:
 
 ### Data Tables
 
-For lessons and project listings:
-
 ```css
 .cad-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .cad-table th {
@@ -212,64 +219,20 @@ For lessons and project listings:
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--cad-gray-500);
-  border-bottom: 1px solid var(--cad-gray-200);
+  color: var(--cad-gray-700);
+  background: rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(79, 70, 229, 0.1);
 }
 
 .cad-table td {
   padding: 16px;
-  border-bottom: 1px solid var(--cad-gray-200);
+  border-bottom: 1px solid rgba(79, 70, 229, 0.08);
+}
+
+.cad-table tr:last-child td {
+  border-bottom: none;
 }
 ```
-
-### Progress Indicators
-
-For project completion and lesson progress:
-
-```
-Linear: 4px height, rounded-full, primary color fill
-Circular: 40px diameter, 4px stroke, primary color
-```
-
----
-
-## Navigation Patterns
-
-### Sidebar Navigation
-
-- Items have 12px vertical padding, 16px horizontal
-- Active state uses left border accent (3px, primary color)
-- Icon + label layout with 12px gap
-- Hover: background color change only (no transform)
-
-**Why left border for active state?**
-- More accessible than color alone
-- Doesn't shift content (unlike background fill changes)
-- Common enterprise pattern users recognize
-
-### Breadcrumbs
-
-Used for lesson detail pages:
-
-```
-Lessons / Angular Fundamentals / Component Lifecycle
-```
-
-Style: Small text (14px), gray color, chevron separator
-
----
-
-## Icons
-
-We use **Material Icons** via Angular Material. Icon sizing:
-
-| Size | Usage |
-|------|-------|
-| 16px | Inline text, small buttons |
-| 20px | Navigation items |
-| 24px | Cards, standalone icons |
-| 32px | Feature highlights |
-| 48px | Empty states |
 
 ---
 
@@ -279,7 +242,7 @@ We use **Material Icons** via Angular Material. Icon sizing:
 
 1. **Purposeful**: Every animation serves a function
 2. **Subtle**: Never draw attention to the animation itself
-3. **Fast**: Most transitions are 200ms or less
+3. **Fast**: Most transitions are 200-300ms
 4. **Respectful**: Honor `prefers-reduced-motion`
 
 ### Standard Transitions
@@ -288,9 +251,9 @@ We use **Material Icons** via Angular Material. Icon sizing:
 |---------|----------|--------|
 | Color changes | 150ms | ease |
 | Transform/scale | 200ms | cubic-bezier(0.4, 0, 0.2, 1) |
-| Height/width | 300ms | cubic-bezier(0.4, 0, 0.2, 1) |
-| Page transitions | 200ms | ease-in-out |
+| Hover effects | 300ms | cubic-bezier(0.4, 0, 0.2, 1) |
 | Modal/dialog | 250ms | cubic-bezier(0, 0, 0.2, 1) |
+| Page transitions | 200ms | ease-in-out |
 
 ---
 
@@ -298,81 +261,66 @@ We use **Material Icons** via Angular Material. Icon sizing:
 
 ### Minimum Requirements
 
-- **Color Contrast**: 4.5:1 for normal text, 3:1 for large text
-- **Focus Indicators**: 2px solid outline, offset by 2px
+- **Color Contrast**: 4.5:1 for normal text, 3:1 for large text (WCAG AA)
+- **Focus Indicators**: 2px solid offset outline with primary color
 - **Touch Targets**: Minimum 44x44px for interactive elements
 - **Reduced Motion**: Disable animations when `prefers-reduced-motion` is set
 
-### ARIA Patterns
+### Focus States
 
-- Navigation: `role="navigation"` with `aria-label`
-- Cards: No special ARIA, ensure proper heading hierarchy
-- Progress bars: `role="progressbar"` with `aria-valuenow`
-- Tabs: Follow WAI-ARIA tabs pattern
-
----
-
-## Tradeoffs & Decisions
-
-### 1. We Chose Card-Based Layout Over Data Tables
-
-**Context**: Displaying lessons and projects
-
-**Decision**: Use cards for the main view, tables only for admin/reporting
-
-**Why**:
-- Cards better handle variable content length
-- More scannable on mobile
-- Allows richer content (tags, progress bars, avatars)
-
-**Tradeoff**: Less information density, harder to compare across items quickly
+```css
+:focus-visible {
+  outline: 2px solid var(--cad-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+```
 
 ---
 
-### 2. We Chose Fixed Sidebar Over Collapsible
+## Icons
 
-**Context**: Navigation on desktop
+We use **Lucide Angular** via @angular/icons.
 
-**Decision**: Keep sidebar always visible on desktop (lg breakpoint+)
-
-**Why**:
-- Users need to switch between sections frequently
-- Content is never wide enough to need the extra space
-- Reduces cognitive load (navigation always visible)
-
-**Tradeoff**: Reduced horizontal space for content on smaller desktops
-
----
-
-### 3. We Chose Angular Material Over Custom Components
-
-**Context**: UI component library
-
-**Decision**: Use Angular Material as the foundation
-
-**Why**:
-- Battle-tested accessibility
-- Consistent with enterprise standards
-- Faster development (focus on content, not components)
-
-**Tradeoff**: Less unique visual identity, harder to customize
+| Size | Usage |
+|------|-------|
+| 16px | Inline text, small buttons |
+| 20px | Navigation items |
+| 24px | Cards, content icons |
+| 32px | Feature highlights |
+| 48px | Empty states |
 
 ---
 
-## File Organization
+## Responsive Breakpoints
+
+| Breakpoint | Width | Target |
+|------------|-------|--------|
+| mobile | 375px | Mobile phones |
+| tablet | 768px | Tablets |
+| desktop | 1024px | Small laptops |
+| desktop | 1440px | Desktops |
+
+---
+
+## Dark Mode
+
+Dark mode uses deep navy background with adjusted contrast:
 
 ```
-design-system/
-├── MASTER.md              # This file - overview and principles
-├── tokens/
-│   ├── colors.scss        # Color variables
-│   ├── typography.scss    # Font settings
-│   └── spacing.scss       # Spacing scale
-└── patterns/
-    ├── cards.md           # Card component specs
-    ├── navigation.md      # Navigation patterns
-    └── tables.md          # Table patterns
+Light Mode                    Dark Mode
+─────────────────────────────────────────
+--cad-bg       →  --cad-bg-dark
+--cad-gray-50  →  --cad-gray-900
+--cad-gray-100 →  --cad-gray-800
+--cad-gray-200 →  --cad-gray-700
+--cad-gray-600 →  --cad-gray-300
+--cad-gray-700 →  --cad-gray-200
+--cad-gray-800 →  --cad-gray-100
+--cad-gray-900 →  --cad-gray-50
 ```
+
+**Note**: Dark mode is optional but available. Light mode with bright colors is the primary focus.
 
 ---
 
@@ -380,10 +328,10 @@ design-system/
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 3.0 | 2026-02-04 | Glassmorphism redesign with vibrant colors |
 | 2.0 | 2026-01-29 | Complete redesign for learning portal |
 | 1.0 | 2025-12-15 | Initial dashboard design |
 
 ---
 
-*Document maintained by the Cadwork Internship Project.*
-*Questions? See the ADRs in `/docs/decisions/` for detailed rationale.*
+*Updated using UI-UX Pro Max Skill v2.0*

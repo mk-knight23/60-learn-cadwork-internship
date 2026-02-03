@@ -10,6 +10,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SettingsService } from '../../core/services/settings.service';
 import { StatsService } from '../../core/services/stats.service';
+import { ProfileService } from '../../core/services/profile.service';
 import { SettingsPanelComponent } from '../dashboard/components/settings-panel.component';
 
 interface NavItem {
@@ -117,7 +118,7 @@ interface NavItem {
 
     .sidenav {
       width: 260px;
-      background-color: #0F172A;
+      background: linear-gradient(180deg, #312E81 0%, #1E1B4B 100%);
       border-right: none;
       padding: 24px 20px 24px 24px;
       display: flex;
@@ -136,11 +137,12 @@ interface NavItem {
     .logo-container {
       width: 44px;
       height: 44px;
-      background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+      background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
     }
 
     .logo {
@@ -187,10 +189,11 @@ interface NavItem {
     }
 
     .nav-item.active-link {
-      background-color: rgba(37, 99, 235, 0.15);
-      color: #3B82F6;
-      border-left: 3px solid #2563EB;
+      background: rgba(99, 102, 241, 0.2);
+      color: #A5B4FC;
+      border-left: 3px solid #818CF8;
       margin-left: -3px;
+      box-shadow: 0 0 12px rgba(129, 140, 248, 0.2);
     }
 
     .nav-icon { color: inherit; }
@@ -222,9 +225,10 @@ interface NavItem {
 
     .storage-fill {
       height: 100%;
-      background: linear-gradient(90deg, #2563EB 0%, #3B82F6 100%);
+      background: linear-gradient(90deg, #4F46E5 0%, #818CF8 100%);
       border-radius: 2px;
       transition: width 0.3s ease;
+      box-shadow: 0 0 8px rgba(79, 70, 229, 0.4);
     }
 
     .storage-text {
@@ -235,7 +239,7 @@ interface NavItem {
     }
 
     .main-content {
-      background-color: #F8FAFC;
+      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
       display: flex;
       flex-direction: column;
     }
@@ -243,29 +247,31 @@ interface NavItem {
     .main-content.dark { background-color: #0F172A; }
 
     .toolbar {
-      background-color: rgba(248, 250, 252, 0.8);
+      background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid #E2E8F0;
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(129, 140, 248, 0.2);
       height: 72px;
       padding: 0 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.08);
     }
 
     .toolbar.dark {
-      background-color: rgba(15, 23, 42, 0.8);
-      border-bottom-color: #1E293B;
+      background: rgba(30, 41, 59, 0.8);
+      border-bottom-color: rgba(129, 140, 248, 0.2);
     }
 
     .page-title {
       font-size: 20px;
       font-weight: 700;
-      color: #1E293B;
+      color: #312E81;
       margin: 0;
     }
 
-    .toolbar.dark .page-title { color: #F8FAFC; }
+    .toolbar.dark .page-title { color: #E0E7FF; }
 
     .toolbar-right {
       display: flex;
@@ -312,12 +318,22 @@ export class LayoutComponent {
   settingsService = inject(SettingsService);
   statsService = inject(StatsService);
   private router = inject(Router);
+  private profileService = inject(ProfileService);
+
+  constructor() {
+    // Initialize profile service
+    this.profileService.initialize();
+  }
 
   navItems: NavItem[] = [
     { route: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
     { route: '/projects', label: 'Projects', icon: 'folder' },
     { route: '/lessons', label: 'Lessons', icon: 'school' },
-    { route: '/skills', label: 'Skills', icon: 'psychology' }
+    { route: '/skills', label: 'Skills', icon: 'psychology' },
+    { route: '/time-log', label: 'Time Log', icon: 'schedule' },
+    { route: '/notes', label: 'Notes', icon: 'sticky_note_2' },
+    { route: '/analytics', label: 'Analytics', icon: 'bar_chart' },
+    { route: '/settings', label: 'Settings', icon: 'settings' }
   ];
 
   pageTitle = computed(() => {

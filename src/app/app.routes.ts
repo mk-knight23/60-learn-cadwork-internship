@@ -52,6 +52,30 @@ export const routes: Routes = [
         loadComponent: () => import('./features/skills/skill-category.component')
           .then(m => m.SkillCategoryComponent),
         title: 'Skill Category - Cadwork Internship'
+      },
+      {
+        path: 'settings',
+        loadComponent: () => import('./features/settings/settings.component')
+          .then(m => m.SettingsComponent),
+        title: 'Settings - Cadwork Internship'
+      },
+      {
+        path: 'analytics',
+        loadComponent: () => import('./features/analytics/analytics.component')
+          .then(m => m.AnalyticsComponent),
+        title: 'Analytics - Cadwork Internship'
+      },
+      {
+        path: 'time-log',
+        loadComponent: () => import('./features/time-log/time-log.component')
+          .then(m => m.TimeLogComponent),
+        title: 'Time Log - Cadwork Internship'
+      },
+      {
+        path: 'notes',
+        loadComponent: () => import('./features/notes/notes.component')
+          .then(m => m.NotesComponent),
+        title: 'Notes - Cadwork Internship'
       }
     ]
   },

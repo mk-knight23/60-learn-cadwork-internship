@@ -199,13 +199,13 @@ interface ProjectPreview {
     .section-title {
       font-size: 24px;
       font-weight: 700;
-      color: #1E293B;
+      color: #312E81;
       margin: 0 0 8px 0;
     }
 
     .section-subtitle {
       font-size: 14px;
-      color: #64748B;
+      color: #6366F1;
       margin: 0;
     }
 
@@ -227,8 +227,18 @@ interface ProjectPreview {
     }
 
     .stat-card {
-      border-radius: 12px;
-      border: 1px solid #E2E8F0;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1), 0 2px 4px -1px rgba(79, 70, 229, 0.06);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .stat-card:hover {
+      box-shadow: 0 8px 12px -2px rgba(79, 70, 229, 0.15), 0 4px 6px -2px rgba(79, 70, 229, 0.1);
+      transform: translateY(-2px);
     }
 
     .stat-header {
@@ -256,20 +266,20 @@ interface ProjectPreview {
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #64748B;
+      color: #6366F1;
       margin: 0 0 8px 0;
     }
 
     .stat-value {
       font-size: 32px;
       font-weight: 800;
-      color: #1E293B;
+      color: #312E81;
       margin: 0;
     }
 
     .stat-trend {
       font-size: 12px;
-      color: #10B981;
+      color: #22C55E;
       font-weight: 600;
     }
 
@@ -283,20 +293,24 @@ interface ProjectPreview {
     }
 
     .project-card {
-      border-radius: 12px;
-      border: 1px solid #E2E8F0;
-      transition: box-shadow 0.2s ease, transform 0.2s ease;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1), 0 2px 4px -1px rgba(79, 70, 229, 0.06);
     }
 
     .project-card:hover {
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 12px -2px rgba(79, 70, 229, 0.15), 0 4px 6px -2px rgba(79, 70, 229, 0.1);
       transform: translateY(-2px);
     }
 
     .project-id {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
-      color: #94A3B8;
+      color: #818CF8;
       font-weight: 600;
       margin-bottom: 4px;
     }
@@ -304,17 +318,17 @@ interface ProjectPreview {
     mat-card-title {
       font-size: 18px !important;
       font-weight: 700 !important;
-      color: #1E293B;
+      color: #312E81;
     }
 
     .project-date {
       font-size: 12px;
-      color: #64748B;
+      color: #6366F1;
     }
 
     .project-description {
       font-size: 14px;
-      color: #475569;
+      color: #4F46E5;
       line-height: 1.5;
       margin: 16px 0;
     }
@@ -330,22 +344,22 @@ interface ProjectPreview {
     .progress-label {
       font-size: 12px;
       font-weight: 600;
-      color: #64748B;
+      color: #6366F1;
       text-transform: uppercase;
     }
 
     .progress-value {
       font-size: 12px;
       font-weight: 700;
-      color: #2563EB;
+      color: #4F46E5;
     }
 
     .status-chips { margin-top: 16px; }
 
-    ::ng-deep .status-draft { background-color: #F1F5F9 !important; color: #64748B !important; }
-    ::ng-deep .status-ongoing { background-color: #DBEAFE !important; color: #2563EB !important; }
+    ::ng-deep .status-draft { background-color: #E0E7FF !important; color: #6366F1 !important; }
+    ::ng-deep .status-ongoing { background-color: #C7D2FE !important; color: #4F46E5 !important; }
     ::ng-deep .status-review { background-color: #FEF3C7 !important; color: #D97706 !important; }
-    ::ng-deep .status-completed { background-color: #D1FAE5 !important; color: #059669 !important; }
+    ::ng-deep .status-completed { background-color: #D1FAE5 !important; color: #22C55E !important; }
 
     /* Learning Section */
     .learning-section { margin-bottom: 48px; }
@@ -357,12 +371,22 @@ interface ProjectPreview {
     }
 
     .learning-card {
-      border-radius: 12px;
-      border: 1px solid #E2E8F0;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.1), 0 2px 4px -1px rgba(79, 70, 229, 0.06);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .learning-card:hover {
+      box-shadow: 0 8px 12px -2px rgba(79, 70, 229, 0.15), 0 4px 6px -2px rgba(79, 70, 229, 0.1);
+      transform: translateY(-2px);
     }
 
     .learning-icon {
-      color: #2563EB;
+      color: #4F46E5;
       font-size: 32px;
       width: 32px;
       height: 32px;
@@ -375,9 +399,9 @@ interface ProjectPreview {
       align-items: center;
       gap: 12px;
       padding: 12px 0;
-      border-bottom: 1px solid #F1F5F9;
+      border-bottom: 1px solid #C7D2FE;
       font-size: 14px;
-      color: #475569;
+      color: #4F46E5;
     }
 
     .skill-item:last-child { border-bottom: none; }
@@ -388,21 +412,24 @@ interface ProjectPreview {
       height: 20px;
     }
 
-    .skill-item.completed mat-icon { color: #10B981; }
-    .skill-item.in-progress mat-icon { color: #94A3B8; }
+    .skill-item.completed mat-icon { color: #22C55E; }
+    .skill-item.in-progress mat-icon { color: #818CF8; }
 
     /* Dark Mode Support */
     :host-context(.dark) {
-      .section-title { color: #F8FAFC; }
-      .section-subtitle { color: #94A3B8; }
+      .section-title { color: #E0E7FF; }
+      .section-subtitle { color: #A5B4FC; }
       .stat-card, .project-card, .learning-card {
-        background-color: #1E293B;
-        border-color: #334155;
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-color: rgba(129, 140, 248, 0.2);
       }
-      .stat-value { color: #F8FAFC; }
-      mat-card-title { color: #F8FAFC !important; }
-      .project-description { color: #94A3B8; }
-      .skill-item { color: #CBD5E1; border-color: #334155; }
+      .stat-value { color: #E0E7FF; }
+      mat-card-title { color: #E0E7FF !important; }
+      .project-description { color: #A5B4FC; }
+      .skill-item { color: #C7D2FE; border-color: rgba(129, 140, 248, 0.2); }
+      .progress-value { color: #818CF8; }
     }
   `]
 })
@@ -411,10 +438,10 @@ export class DashboardComponent {
   private audioService = inject(AudioService);
 
   stats = signal<DashboardStat[]>([
-    { label: 'Active Projects', value: 12, icon: 'folder', color: '#2563EB', trend: '+2 this month' },
-    { label: 'Completed Tasks', value: 148, icon: 'check_circle', color: '#10B981', trend: '+23 this week' },
+    { label: 'Active Projects', value: 12, icon: 'folder', color: '#4F46E5', trend: '+2 this month' },
+    { label: 'Completed Tasks', value: 148, icon: 'check_circle', color: '#22C55E', trend: '+23 this week' },
     { label: 'Hours Logged', value: 640, icon: 'schedule', color: '#F59E0B' },
-    { label: 'Lessons Learned', value: 24, icon: 'school', color: '#8B5CF6' }
+    { label: 'Lessons Learned', value: 24, icon: 'school', color: '#818CF8' }
   ]);
 
   projects = signal<ProjectPreview[]>([

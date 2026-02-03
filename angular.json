@@ -44,7 +44,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/47-Cadwork-Internship-Project/"
+              "baseHref": "/60-starter-cadwork-internship/"
             },
             "development": {
               "optimization": false,

@@ -35,6 +35,7 @@
     "date-fns": "^4.1.0",
     "lucide-angular": "^0.563.0",
     "rxjs": "~7.8.0",
+    "sql.js": "^1.12.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

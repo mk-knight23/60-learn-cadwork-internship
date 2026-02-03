@@ -1,17 +1,18 @@
-/* 
- * Cadwork Internship Learning Portal
- * Global Styles with Angular Material Theming
+/*
+ * Cadwork Internship Learning Portal - v3.0 Glassmorphism Edition
+ * Modern, bright, and confident UI system
  */
 
 // Import Angular Material theming
 @use '@angular/material' as mat;
 
-// Define custom color palette
-$cadwork-primary: mat.define-palette(mat.$blue-palette, 600, 400, 800);
-$cadwork-accent: mat.define-palette(mat.$indigo-palette, 500, 300, 700);
-$cadwork-warn: mat.define-palette(mat.$red-palette, 500);
+// Define vibrant color palette (Glassmorphism Indigo Theme)
+$cadwork-primary: mat.define-palette(mat.$indigo-palette, 600, 400, 800);
+$cadwork-accent: mat.define-palette(mat.$cyan-palette, 500, 300, 700);
+$cadwork-cta: mat.define-palette(mat.$green-palette, 600, 400, 700);
+$cadwork-warn: mat.define-palette(mat.$amber-palette, 500);
 
-// Create the theme
+// Create the light theme
 $cadwork-theme: mat.define-light-theme((
   color: (
     primary: $cadwork-primary,
@@ -19,7 +20,7 @@ $cadwork-theme: mat.define-light-theme((
     warn: $cadwork-warn,
   ),
   typography: mat.define-typography-config(
-    $font-family: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    $font-family: '"Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   ),
   density: 0,
 ));
@@ -45,45 +46,50 @@ $cadwork-dark-theme: mat.define-dark-theme((
 }
 
 /* ========================================
-   CSS Custom Properties (Design Tokens)
+   CSS Custom Properties (Design Tokens) - v3.0
    ======================================== */
 
 :root {
-  /* Primary Colors */
-  --cad-primary: #2563EB;
-  --cad-primary-dark: #1D4ED8;
-  --cad-primary-light: #3B82F6;
-  
-  /* Neutral Colors */
-  --cad-gray-50: #F8FAFC;
-  --cad-gray-100: #F1F5F9;
-  --cad-gray-200: #E2E8F0;
-  --cad-gray-300: #CBD5E1;
-  --cad-gray-400: #94A3B8;
-  --cad-gray-500: #64748B;
-  --cad-gray-600: #475569;
-  --cad-gray-700: #334155;
-  --cad-gray-800: #1E293B;
+  /* Primary Colors - Vibrant Indigo */
+  --cad-primary: #4F46E5;
+  --cad-primary-dark: #4338CA;
+  --cad-primary-light: #6366F1;
+
+  /* Secondary & Accent Colors */
+  --cad-secondary: #818CF8;
+  --cad-cta: #22C55E;
+
+  /* Neutral Colors - Light Blue-White Tinted Grayscale */
+  --cad-gray-50: #EEF2FF;
+  --cad-gray-100: #E0E7FF;
+  --cad-gray-200: #C7D2FE;
+  --cad-gray-300: #A5B4FC;
+  --cad-gray-400: #818CF8;
+  --cad-gray-500: #6366F1;
+  --cad-gray-600: #4F46E5;
+  --cad-gray-700: #312E81;
+  --cad-gray-800: #1E1B4B;
   --cad-gray-900: #0F172A;
-  
+
   /* Semantic Colors */
-  --cad-success: #10B981;
-  --cad-success-light: #D1FAE5;
+  --cad-success: #22C55E;
+  --cad-success-light: #86EFAC;
   --cad-warning: #F59E0B;
-  --cad-warning-light: #FEF3C7;
+  --cad-warning-light: #FCD34D;
   --cad-error: #EF4444;
-  --cad-error-light: #FEE2E2;
+  --cad-error-light: #FCA5A5;
   --cad-info: #0EA5E9;
-  --cad-info-light: #E0F2FE;
-  
-  /* Background */
-  --cad-bg: #F8FAFC;
+  --cad-info-light: #38BDF8;
+
+  /* Background Colors */
+  --cad-bg: #EEF2FF;
   --cad-bg-dark: #0F172A;
-  
+  --cad-surface: #FFFFFF;
+
   /* Typography */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
-  
+
   /* Spacing Scale (8px base) */
   --space-1: 4px;
   --space-2: 8px;
@@ -94,29 +100,93 @@ $cadwork-dark-theme: mat.define-dark-theme((
   --space-8: 32px;
   --space-10: 40px;
   --space-12: 48px;
-  
-  /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+
+  /* Border Radius - More rounded for modern feel */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-full: 9999px;
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  
+
+  /* Shadows - Glassmorphism inspired */
+  --shadow-sm: 0 1px 3px 0 rgba(79, 70, 229, 0.08), 0 1px 2px -1px rgba(79, 70, 229, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(79, 70, 229, 0.12), 0 2px 4px -1px rgba(79, 70, 229, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(79, 70, 229, 0.15), 0 4px 6px -2px rgba(79, 70, 229, 0.10);
+
+  /* Glassmorphism glow */
+  --glass-glow: 0 0 20px 0 rgba(79, 70, 229, 0.15);
+  --glass-glow-hover: 0 0 30px 0 rgba(79, 70, 229, 0.25);
+
   /* Transitions */
-  --transition-fast: 150ms ease;
-  --transition-base: 200ms ease;
-  --transition-slow: 300ms ease;
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Dark mode overrides */
 .dark {
   --cad-bg: #0F172A;
   --cad-bg-dark: #0F172A;
+}
+
+/* ========================================
+   Glassmorphism Utility Classes
+   ======================================== */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 4px 6px -1px rgba(79, 70, 229, 0.1),
+    0 2px 4px -1px rgba(79, 70, 229, 0.06),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  box-shadow:
+    0 8px 12px -2px rgba(79, 70, 229, 0.15),
+    0 4px 6px -2px rgba(79, 70, 229, 0.1);
+  transform: translateY(-2px);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.glass-button-primary {
+  background: var(--cad-primary);
+  color: white;
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(79, 70, 229, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-button-primary:hover {
+  background: var(--cad-primary-dark);
+  box-shadow: 0 4px 12px 0 rgba(79, 70, 229, 0.4);
+  transform: translateY(-1px);
+}
+
+.glass-button-cta {
+  background: var(--cad-cta);
+  color: white;
+  border: none;
+  box-shadow: 0 2px 8px 0 rgba(34, 197, 94, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-button-cta:hover {
+  background: #16A34A;
+  box-shadow: 0 4px 12px 0 rgba(34, 197, 94, 0.4);
+  transform: translateY(-1px);
 }
 
 /* ========================================
@@ -150,7 +220,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: 700;
   line-height: 1.2;
-  color: var(--cad-gray-900);
+  color: var(--cad-gray-700);
 }
 
 h1 { font-size: 2rem; }
@@ -169,6 +239,7 @@ code {
   background-color: var(--cad-gray-100);
   padding: 2px 6px;
   border-radius: var(--radius-sm);
+  color: var(--cad-primary);
 }
 
 pre {
@@ -209,22 +280,33 @@ pre code {
 .text-xl { font-size: 1.25rem; }
 
 .text-primary { color: var(--cad-primary); }
+.text-secondary { color: var(--cad-secondary); }
 .text-success { color: var(--cad-success); }
 .text-warning { color: var(--cad-warning); }
 .text-error { color: var(--cad-error); }
+.text-info { color: var(--cad-info); }
 .text-muted { color: var(--cad-gray-500); }
 
 /* ========================================
-   Material Overrides
+   Material Overrides - Glassmorphism Style
    ======================================== */
 
 .mat-mdc-card {
-  --mdc-elevated-card-container-color: white;
+  --mdc-elevated-card-container-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-lg) !important;
 }
 
 .mat-mdc-raised-button.mat-primary {
   background-color: var(--cad-primary) !important;
+  box-shadow: 0 2px 8px 0 rgba(79, 70, 229, 0.3);
+}
+
+.mat-mdc-raised-button.mat-primary:hover {
+  background-color: var(--cad-primary-dark) !important;
+  box-shadow: 0 4px 12px 0 rgba(79, 70, 229, 0.4);
 }
 
 .mat-mdc-progress-bar {
@@ -252,26 +334,26 @@ pre code {
 }
 
 /* ========================================
-   Scrollbar Styling
+   Scrollbar Styling - Subtle
    ======================================== */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--cad-gray-100);
+  background: transparent;
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--cad-gray-400);
+  background: var(--cad-gray-300);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--cad-gray-500);
+  background: var(--cad-gray-400);
 }
 
 /* ========================================
@@ -280,28 +362,30 @@ pre code {
 
 .dark {
   color: var(--cad-gray-300);
-  
+
   h1, h2, h3, h4, h5, h6 {
     color: var(--cad-gray-50);
   }
-  
+
   code {
     background-color: var(--cad-gray-700);
     color: var(--cad-gray-200);
   }
-  
+
   .mat-mdc-card {
-    --mdc-elevated-card-container-color: var(--cad-gray-800);
+    --mdc-elevated-card-container-color: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
-  
+
   ::-webkit-scrollbar-track {
-    background: var(--cad-gray-800);
+    background: rgba(255, 255, 255, 0.02);
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background: var(--cad-gray-600);
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     background: var(--cad-gray-500);
   }
