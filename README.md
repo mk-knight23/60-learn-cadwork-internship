@@ -55,8 +55,15 @@ npm start
 npm run build
 ```
 
-## Deployment
-Optimized for enterprise static hosting or internal project servers.
+## 🚀 Live Deployments
+
+- **GitHub**: https://github.com/mk-knight23/60-learn-cadwork-internship
+- **GitHub Pages**: https://mk-knight23.github.io/60-starter-cadwork-internship/
+- **Vercel**: https://60-starter-cadwork-internship.vercel.app
+
+### Deployment Platforms
+- ✅ GitHub Pages (via GitHub Actions)
+- ✅ Vercel (configured)
 
 ---
 
