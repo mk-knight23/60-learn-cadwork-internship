@@ -45,3 +45,5 @@ Thumbs.db
 
 # Deployment
 .vercel/
+.vercel
+.env*.local

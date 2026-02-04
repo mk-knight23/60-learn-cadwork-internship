@@ -1,6 +1,6 @@
 # Cadwork - Internship Project Portal
 
-A professional-grade engineering project management dashboard designed to track and document internship milestones and technical deliverables. Built with Angular 19 and Tailwind CSS.
+A professional-grade engineering project management dashboard designed to track and document internship milestones and technical deliverables. Built with Angular 21, TypeScript, and Tailwind CSS.
 
 ## Overview
 This portal serves as the centralized hub for the Cadwork internship, replacing legacy mobile-first scripts with a robust, data-driven web environment. It prioritizes clarity, technical precision, and architectural excellence.
@@ -17,7 +17,7 @@ This portal serves as the centralized hub for the Cadwork internship, replacing 
 | **Architecture** | Flat | **Domain-Driven Modular Structure** |
 
 ## Tech Stack
-- **Framework:** Angular 19 (Standalone Components, Signals)
+- **Framework:** Angular 21 (Standalone Components, Signals)
 - **Styling:** Tailwind CSS (Blueprint palette)
 - **Icons:** Lucide Angular
 - **State:** Angular Signals for reactive UI state
@@ -57,9 +57,9 @@ npm run build
 
 ## 🚀 Live Deployments
 
-- **GitHub**: https://github.com/mk-knight23/60-learn-cadwork-internship
-- **GitHub Pages**: https://mk-knight23.github.io/60-starter-cadwork-internship/
 - **Vercel**: https://60-starter-cadwork-internship.vercel.app
+- **Cloudflare Pages**: https://60-starter-cadwork-internship.pages.dev
+- **GitHub Pages**: https://mk-knight23.github.io/60-starter-cadwork-internship/
 
 ### Deployment Platforms
 - ✅ GitHub Pages (via GitHub Actions)
