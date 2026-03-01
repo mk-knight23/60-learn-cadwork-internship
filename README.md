@@ -69,3 +69,52 @@ npm run build
 
 **License:** MIT
 **Project Architect:** mk-knight23
+
+
+## 🎯 Problem Solved
+
+This repository provides a streamlined approach to modern development needs, enabling developers to build robust applications with minimal complexity and maximum efficiency.
+
+## ✨ Features
+
+- **Core Functionality:** Primary features and capabilities
+- **Production Ready:** Built for real-world deployment scenarios
+- **Optimized Performance:** Efficient resource utilization
+- **Developer Experience:** Clear documentation and intuitive API
+
+## 🏗️ Architecture
+
+```
+```
+
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/mk-knight23/60-learn-cadwork-internship
+cd 60-learn-cadwork-internship
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+## 🌐 Deployment
+
+### Live URLs
+
+| Platform | URL |
+|----------|-----|
+| Vercel | [Deployed Link] |
+| GitHub Pages | [Deployed Link] |
+
+
+## 📄 License
+
+MIT License - see LICENSE file for details
+
+---
+
+Built with ❤️ by mk-knight23
